@@ -1,27 +1,27 @@
-﻿Console.Write("Введите значения через запятую:");
+﻿Console.Write("Введите значения через запятую, / или пробел:");
 string? mas = Console.ReadLine();
-string [] newrray  =  mas.Split(',');
+string [] newArray  =  mas.Split(',','/',' ');
 
-WriteArray(newrray);
+WriteArray(newArray);
 
-string [] selectArray = new string [CountingSelectElements(newrray,3)];
+string [] selectArray = new string [CountingSelectElements(newArray,3)];
 
-WriteSelectElements (newrray,selectArray,3);
+WriteSelectElements (newArray,selectArray,3);
 
 WriteArray (selectArray);
 
 int CountingSelectElements (string [] array, int condition)
 {
-    int count = 1;
+    int count = 0;
     for (int i = 0; i < array.Length; i++)
     {
         if (array[i].Length <= condition)
         {
             count++;
         }
+    }
+    return count; 
 
-    } 
-    return count;
 }
 
 void WriteSelectElements (string [] array, string [] resultArray, int condition)
@@ -34,11 +34,11 @@ void WriteSelectElements (string [] array, string [] resultArray, int condition)
             if (array[j].Length <= condition)
             {
                 resultArray[i] = array[j];
-                
-               
+                count = j+1;
+                break;
             }
-            count = j+1;
-            break;
+            
+            
         }
     }
 }
